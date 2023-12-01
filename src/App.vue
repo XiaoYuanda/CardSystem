@@ -1,21 +1,30 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import Card from './components/Card.vue'
-import Box from './components/Box.vue'
-
+import axios from 'axios';
+import Box from './components/Box.vue';
+let windowInnerHeight = 0;
+let windowInnerWidth = 0;
 
 const h = ref(null)
 
-
+const Data = ref({})
+const getData = async function (){ //获取数据
+  // 遇到的问题：跨域问题，无法请求数据，客户端浏览器的安全机制导致无法跨域请求。
+  let res = await axios.get('http://localhost:9000/user/1')
+  Data.value = res.data
+  console.log(Data.value)
+}
 
 onMounted(()=>{
-  console.log(h.value)
-  document.body.style.backgroundColor = '#f3f9f1';
+  windowInnerHeight = window.innerHeight; // 获取高度
+  windowInnerWidth = window.innerWidth; // 获取宽度
+  document.body.style.backgroundColor = '#f3f9f1'; // 设置背景颜色
+  getData() // 加载数据
 })
 </script>
 
 <template>
-  <div class="screen" >
+  
   <!-- <div style="margin-top: 200px;position: relative;transform: scale(0.35);transform-origin: 0% 0%;margin-left: 50px;">
     <Card class="cardlist" style="top:0px"></Card>
     <Card class="cardlist" style="top:120px"></Card>
@@ -32,31 +41,17 @@ onMounted(()=>{
     <Card class="cardlist" style="top:1440px"></Card>
   </div> -->
 
-  <!-- <Card class="bigCard"></Card> -->
+  <!-- <Card class="bigCard"></Card>
   <Box class="box"></Box>
   <Box class="box2"></Box>
-  <Box class="box3"></Box>
+  <Box class="box3"></Box> -->
+
+<div class="screen" >
+<Box class="box" v-for="(i, index) in Data.cardGroups" :cardGroupName="i.name" :cards="i.cards" :showDelay="index*0.5"></Box>
 </div>
-  
 </template>
 
 <style scoped>
-
-.cardlist{
-  transition-duration: 0.6s;
-}
-.cardlist:hover{
-  transform: translate(0%, -60%);
-  transition-duration: 0.6s;
-  cursor: pointer;
-}
-.bigCard{
-position: absolute;
-top:50%;
-left: 50%;
-transform: translate(-50%,-50%);
-}
-
 .screen{
   width: 2920px;
   height: 1080px;
