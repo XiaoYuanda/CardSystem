@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import CardSystem from './CardSystem.vue'
 
-createApp(App).mount('#app')
+createApp(CardSystem).mount('#app')
 
 

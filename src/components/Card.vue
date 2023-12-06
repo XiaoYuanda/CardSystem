@@ -9,9 +9,8 @@ const props = defineProps({
     <div class="cardFace" v-html="cardContext">
     </div>
   </div>
-
-
 </template>
+
 
 <style scoped>
 .cardGackGroup{

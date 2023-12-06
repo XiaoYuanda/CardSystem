@@ -4,7 +4,8 @@ import Card from './Card.vue';
 const props = defineProps({
   cardGroupName: String,
   cards: Array,
-  showDelay: Number
+  showDelay: Number,
+  cardGroupId: Number
 })
 
 let spaceout = 10
@@ -15,13 +16,14 @@ onMounted(()=>{
 
 <template>
 <div class="box" :style="`animation-delay:` +showDelay+ `s;`">
+  
   <div class="back-side"></div>
   <div class="left-side"></div>
   <div class="right-side"></div>
   <div class="bottom-side"></div>
-  <Card class="card" v-for="(i,index) in cards" :cardContext="i.question" :key="index" :style="`animation-delay: `+ index * 0.2 + showDelay +`s;transform: translateZ(`+ -(index * - spaceout +35 ) +`px);`" ></Card>
+  <Card class="card" v-for="(i,index) of cards" :cardContext="i.question" :key="index" :style="`animation-delay: `+ index * 0.2 + showDelay +`s;transform: translateZ(`+ -(index * - spaceout +35 ) +`px);`" ></Card>
   <div class="front-side" style="text-align: center;">
-    <h1 style="margin-top: 300px;font-size: 80px;">{{ cardGroupName }}</h1>
+    <h1 style="margin-top: 300px;font-size: 80px;">{{ cardGroupName }}<p style="font-size: 30px;">id:{{ cardGroupId }}</p></h1>
   </div>
 </div>
 
