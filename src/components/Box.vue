@@ -21,7 +21,7 @@ onMounted(()=>{
   <div class="left-side"></div>
   <div class="right-side"></div>
   <div class="bottom-side"></div>
-  <Card class="card" v-for="(i,index) of cards" :cardContext="i.question" :key="index" :style="`animation-delay: `+ index * 0.2 + showDelay +`s;transform: translateZ(`+ -(index * - spaceout +35 ) +`px);`" ></Card>
+  <Card v-for="(i,index) of cards" :cardContext="i.question" :key="index" :style="`animation-delay: `+ index * 0.2 + showDelay +`s;transform: translateZ(`+ -(index * - spaceout +35 ) +`px);`" ></Card>
   <div class="front-side" style="text-align: center;">
     <h1 style="margin-top: 300px;font-size: 80px;">{{ cardGroupName }}<p style="font-size: 30px;">id:{{ cardGroupId }}</p></h1>
   </div>
@@ -31,16 +31,6 @@ onMounted(()=>{
 </template>
 
 <style scoped>
-.card{
-  animation-name: cardAnimate;
-  animation-duration: 1.5s;
-  opacity: 0;
-  animation-fill-mode: forwards;
-  margin-left: 10px;
-  margin-top: -102px;
-  transition-duration: 1s;
-  float: left;
-}
 
 @keyframes cardAnimate {
   0%{
