@@ -1,9 +1,9 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import Side from './components/sides/leftSides/Side.vue'
-import Card from './components/cards/Card.vue';
 import Bar from './components/bars/Bar.vue';
 import ShowLeft from './components/sides/leftSides/ShowLeft.vue';
+const electron = window.require("electron");
 const context = ref('')
 let sideStyle = ref('show')
 
@@ -13,6 +13,14 @@ const callback = function (){
   }else{
     sideStyle.value = 'show'
   }
+}
+
+const min = function () {
+  electron.ipcRenderer.send('window-min')
+}
+
+const close = function (){
+  electron.ipcRenderer.send('window-close')
 }
 
 onMounted(()=>{
@@ -26,7 +34,7 @@ onMounted(()=>{
     <ShowLeft @some-event="callback"></ShowLeft>
   </el-col>
   <el-col :span="23">
-    <Bar></Bar>
+    <Bar @close="close" @min="min"></Bar>
     <!-- <Card :cardContext="context"></Card> -->
     <Side :class="sideStyle"></Side>
   </el-col>

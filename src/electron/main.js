@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 // const path = require("path")
 
 const createWindow = () => {
@@ -20,14 +20,30 @@ const createWindow = () => {
       symbolColor: '#74b1be',
       height: 60
     },
+    webPreferences: {
+      preload: './preload.js',
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      contextIsolation: false
+    },
+    maximizable: false,
     // backgroundColor: '#2e2c29',
     // transparent: true
   })
   mainWindow.loadURL("http://localhost:5173/");
+  // mainWindow.loadURL(`file://${path.join(__dirname, "../dist/index.html")}`);
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })
   mainWindow.openDevTools();
+  ipcMain.on('window-close',()=>{
+    mainWindow.closeDevTools();
+    mainWindow.close()
+  })
+
+  ipcMain.on('window-min',()=>{
+    mainWindow.minimize()
+  })
 }
 
 app.whenReady().then(() => {

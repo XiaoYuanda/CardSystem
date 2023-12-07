@@ -1,13 +1,19 @@
 {
   "main": "src/electron/main.js",
   "name": "card-system",
+  "author": {
+    "name": "Yuanda",
+    "email": "xiaoyuanda@alliyun.com"
+  },
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "vite --host 192.168.31.76",
     "build": "vite build",
     "preview": "vite preview",
-    "electron:dev": "concurrently vite \"electron .\""
+    "electron:dev": "concurrently vite \"electron .\"",
+    "electron:build": "vite build && electron-builder",
+    "start": "vite | electron ."
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
@@ -20,6 +26,8 @@
     "@vitejs/plugin-vue": "^4.4.0",
     "concurrently": "^8.2.2",
     "electron": "^28.0.0",
-    "vite": "^4.4.11"
+    "electron-builder": "^24.9.1",
+    "vite": "^4.4.11",
+    "vite-plugin-electron": "^0.15.4"
   }
 }
