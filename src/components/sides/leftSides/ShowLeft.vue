@@ -17,7 +17,7 @@ const color  = ref('#999')
       <el-row style="height: 30px; width: 40px;">
         <div class="toggleSide" @click="$emit('someEvent')">
         <el-icon :size="size" :color="color" >
-          <Postcard />
+          <Files />
         </el-icon>
       </div>
       </el-row>
@@ -25,17 +25,37 @@ const color  = ref('#999')
       <el-row style="height: 30px; width: 40px;">
         <div class="toggleSide" @click="$emit('someEvent')">
         <el-icon :size="size" :color="color" >
-          <Postcard />
+          <DataLine />
         </el-icon>
       </div>
       </el-row>
       <el-row style="height: 30px; width: 40px;">
         <div class="toggleSide" @click="$emit('someEvent')">
         <el-icon :size="size" :color="color" >
-          <Postcard />
+          <Share />
         </el-icon>
       </div>
       </el-row>
+
+      <el-row style="height: 30px; width: 40px;bottom: 10px;position: absolute;">
+        <div class="toggleSide" @click="$emit('someEvent')">
+        <el-icon :size="size" :color="color" >
+          <Setting />
+        </el-icon>
+      </div>
+      </el-row>
+
+      <el-row style="height: 30px; width: 40px;bottom: 50px;position: absolute;">
+        <div class="toggleSide" @click="$emit('someEvent')">
+          <div>
+      <el-avatar :size="20"
+        src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+      />
+    </div>
+      </div>
+      </el-row>
+
+
 
 
 </div>
@@ -60,5 +80,8 @@ const color  = ref('#999')
 }
 .show-left-bar{
   height: 100%; background-color: #292525; padding: 5px 10px;box-sizing: border-box;
+}
+.el-row{
+  margin-top: 10px;
 }
 </style>
