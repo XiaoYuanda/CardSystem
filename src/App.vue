@@ -9,12 +9,22 @@ import { ElNotification } from 'element-plus'
 import { h } from 'vue'
 // const drawer = ref(true)
 const electron = window.require("electron");
+const devTools = ref(false)
 const context = ref('')
 let sideWidth = ref('180px')
 const currentGroupName = ref('')
 const Data = ref({})
 
-let currentCards = ref([])
+let currentCards = ref(null)
+
+const devToolsToggle = function (){
+  devTools.value = !devTools.value
+  if(devTools.value){
+    electron.ipcRenderer.send('devTools-open')
+  }else{
+    electron.ipcRenderer.send('devTools-close')
+  }
+}
 
 const sideWidthchange = function (){
   if(sideWidth.value == '180px'){
@@ -59,7 +69,7 @@ onMounted(()=>{
 <template>
   <div class="common-layout">
     <el-container>
-      <el-aside width="40px"><ShowLeft @some-event="sideWidthchange"></ShowLeft></el-aside>
+      <el-aside width="40px"><ShowLeft @some-event="sideWidthchange" @devTools-toggle="devToolsToggle"></ShowLeft></el-aside>
       <el-aside :width="sideWidth"><Side :Data="Data.cardGroups" @click-card-group="clickCardGroup"></Side></el-aside>
       <el-container>
         <el-header><Bar :groupName="currentGroupName" @close="close" @min="min"></Bar></el-header>

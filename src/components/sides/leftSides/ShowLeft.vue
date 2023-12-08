@@ -38,7 +38,7 @@ const color  = ref('#999')
       </el-row>
 
       <el-row style="height: 30px; width: 40px;bottom: 10px;position: absolute;">
-        <div class="toggleSide" @click="$emit('someEvent')">
+        <div class="toggleSide" @click="$emit('devTools-toggle')">
         <el-icon :size="size" :color="color" >
           <Setting />
         </el-icon>

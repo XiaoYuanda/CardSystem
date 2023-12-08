@@ -42,6 +42,14 @@ const createWindow = () => {
     mainWindow.close()
   })
 
+  ipcMain.on('devTools-close',()=>{
+    mainWindow.closeDevTools();
+  })
+  ipcMain.on('devTools-open',()=>{
+    mainWindow.openDevTools();
+  })
+
+
   ipcMain.on('window-min',()=>{
     mainWindow.minimize()
   })
