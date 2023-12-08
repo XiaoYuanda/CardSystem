@@ -54,11 +54,11 @@ const color  = ref('#999')
   -webkit-app-region:no-drag;
   box-sizing: border-box;
   border-radius: 2px;
-  background-color: #fff;
+  background-color: #545353;
   box-shadow: 0 0 1px gray;
   cursor: pointer;
 }
 .show-left-bar{
-  height: 100%; background-color: #eee; padding: 5px 10px;box-sizing: border-box;
+  height: 100%; background-color: #292525; padding: 5px 10px;box-sizing: border-box;
 }
 </style>

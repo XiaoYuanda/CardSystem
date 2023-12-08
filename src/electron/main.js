@@ -10,6 +10,7 @@ const createWindow = () => {
     minHeight: 700,
     maxHeight:700,
     maxWidth:1000,
+    alwaysOnTop: true,
     // x: 20,
     // y: 20,
     frame: false,
@@ -30,8 +31,8 @@ const createWindow = () => {
     // backgroundColor: '#2e2c29',
     // transparent: true
   })
-  // mainWindow.loadURL("http://localhost:5173/");
-  mainWindow.loadURL(`file://${path.join(__dirname, "../../dist/index.html")}`);
+  mainWindow.loadURL("http://localhost:5173/");  // 这是开发时使用的地址
+  // mainWindow.loadURL(`file://${path.join(__dirname, "../../dist/index.html")}`); // 这是打包时使用的地址
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })
