@@ -10,7 +10,7 @@ const createWindow = () => {
     minHeight: 700,
     maxHeight:700,
     maxWidth:1000,
-    alwaysOnTop: true,
+    // alwaysOnTop: true, // 窗口一直处于最前面
     // x: 20,
     // y: 20,
     frame: false,

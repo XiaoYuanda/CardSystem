@@ -11,7 +11,10 @@ import { h } from 'vue'
 const electron = window.require("electron");
 const context = ref('')
 let sideWidth = ref('180px')
+const currentGroupName = ref('')
 const Data = ref({})
+
+let currentCards = ref([])
 
 const sideWidthchange = function (){
   if(sideWidth.value == '180px'){
@@ -19,6 +22,15 @@ const sideWidthchange = function (){
   }else{
     sideWidth.value = '180px'
   }
+}
+
+const clickCardGroup = function(i){
+  if(i.cards.length == 0) {
+    currentCards.value = null
+  }else{
+    currentCards.value = i.cards
+  }
+  currentGroupName.value = i.name
 }
 const getData = async function(){
   let res = await axios.get('http://localhost:9000/user/1')
@@ -48,11 +60,13 @@ onMounted(()=>{
   <div class="common-layout">
     <el-container>
       <el-aside width="40px"><ShowLeft @some-event="sideWidthchange"></ShowLeft></el-aside>
-      <el-aside :width="sideWidth"><Side :Data="Data.cardGroups"></Side></el-aside>
-      <el-container style="transition-duration: 0.5s;">
-        <el-header><Bar @close="close" @min="min"></Bar></el-header>
-        <el-main><MainSpace></MainSpace></el-main>
-        <el-footer>Footer</el-footer>
+      <el-aside :width="sideWidth"><Side :Data="Data.cardGroups" @click-card-group="clickCardGroup"></Side></el-aside>
+      <el-container>
+        <el-header><Bar :groupName="currentGroupName" @close="close" @min="min"></Bar></el-header>
+        <el-main style="overflow: hidden;">
+          
+          <MainSpace :groupData="currentCards"></MainSpace>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -68,11 +82,7 @@ onMounted(()=>{
 <style scoped>
 .el-header{
   padding: 0px;
-  transition-duration: 0.5s;
   height: 30px;
-}
-.el-main{
-  padding: 0px;
 }
 </style>
 

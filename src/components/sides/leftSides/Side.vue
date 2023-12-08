@@ -9,7 +9,9 @@ defineProps(['Data'])
     <div style="box-sizing: border-box;line-height: 30px;margin-left: 10px;">卡片组</div>
   </el-header>
   <el-main>
-    <div v-for="i in Data" style="background-color: #e3e3e3;height: 40px;border: 1px solid #ddd ;font-size: 12px;box-sizing: border-box;box-sizing: border-box;line-height: 30px;margin-left: 10px;">{{ i.name }}</div>
+    <div class="cardgroup" v-for="i in Data" @click="$emit('click-card-group', i)">
+      <div style="margin-left: 10px;font-size: 12px;box-sizing: border-box;line-height: 40px;">{{ i.name }}</div>
+    </div>
   </el-main>
 </el-container>
 </div>
@@ -18,16 +20,24 @@ defineProps(['Data'])
 <style scoped>
 .show{
   height: 970px;
-  background-color: #eee;
+  background-color: #e1e1e1;
   transition-duration: 0.5s;
 }
 .el-header{
   padding: 0px;
-  border: 1px solid #e3e3e3;
+  border-right: 1px solid #e0e0e0;
+  background-color: #efefef;
   user-select: none;
 }
 .el-main{
   padding: 0;
   background-color: #e3e3e3;
+  overflow: hidden;
+}
+.cardgroup{
+  background-color: #e2e2e2 ;box-sizing: border-box;
+}
+.cardgroup:hover{
+  background-color: #d9d9d9;
 }
 </style>

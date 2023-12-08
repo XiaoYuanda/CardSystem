@@ -80,6 +80,7 @@ const color  = ref('#999')
 }
 .show-left-bar{
   height: 100%; background-color: #292525; padding: 5px 10px;box-sizing: border-box;
+  user-select: none;
 }
 .el-row{
   margin-top: 10px;
