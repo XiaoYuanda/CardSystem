@@ -1,5 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
-// const path = require("path")
+const path = require("path")
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -30,8 +30,8 @@ const createWindow = () => {
     // backgroundColor: '#2e2c29',
     // transparent: true
   })
-  mainWindow.loadURL("http://localhost:5173/");
-  // mainWindow.loadURL(`file://${path.join(__dirname, "../dist/index.html")}`);
+  // mainWindow.loadURL("http://localhost:5173/");
+  mainWindow.loadURL(`file://${path.join(__dirname, "../../dist/index.html")}`);
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })
