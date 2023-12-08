@@ -1,14 +1,16 @@
 <script setup>
-
 </script>
 
 
 <template>
   <div class="mainspace">
-    <h1>MainSpace</h1>
+    <el-empty  :image-size="100" description="什么也没有" />
   </div>
 </template>
 
 
 <style scoped>
+.el-empty{
+  margin-top: 200px;
+}
 </style>
