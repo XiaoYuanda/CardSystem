@@ -31,12 +31,14 @@ const createWindow = () => {
     // backgroundColor: '#2e2c29',
     // transparent: true
   })
+  // mainWindow.openDevTools(); // 是否默认打开devtools
+
   mainWindow.loadURL("http://localhost:5173/");  // 这是开发时使用的地址
   // mainWindow.loadURL(`file://${path.join(__dirname, "../../dist/index.html")}`); // 这是打包时使用的地址
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })
-  mainWindow.openDevTools();
+
   ipcMain.on('window-close',()=>{
     mainWindow.closeDevTools();
     mainWindow.close()

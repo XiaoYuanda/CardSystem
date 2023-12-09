@@ -7,6 +7,7 @@ import MainSpace from './components/mainspace/MainSpace.vue';
 import axios from 'axios'
 import { ElNotification } from 'element-plus'
 import { h } from 'vue'
+import GraphView from './components/mainspace/GraphView.vue';
 // const drawer = ref(true)
 const electron = window.require("electron");
 const devTools = ref(false)
@@ -73,8 +74,8 @@ onMounted(()=>{
       <el-aside :width="sideWidth"><Side :Data="Data.cardGroups" @click-card-group="clickCardGroup"></Side></el-aside>
       <el-container>
         <el-header><Bar :groupName="currentGroupName" @close="close" @min="min"></Bar></el-header>
-        <el-main style="overflow: hidden;">
-          
+        <el-main style="overflow: hidden;padding: 0px;]">
+          <GraphView :groupData="currentCards"></GraphView>
           <MainSpace :groupData="currentCards"></MainSpace>
         </el-main>
       </el-container>
