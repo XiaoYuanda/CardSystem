@@ -8,6 +8,10 @@ import axios from 'axios'
 import { ElNotification } from 'element-plus'
 import { h } from 'vue'
 import GraphView from './components/mainspace/GraphView.vue';
+import Dataview from './components/mainspace/Dataview.vue';
+import MyTimeLine from './components/mainspace/MyTimeLine.vue'
+import CardReview from './components/cards/CardReview.vue';
+import CardBox from './components/CardBox.vue'
 // const drawer = ref(true)
 const electron = window.require("electron");
 const devTools = ref(false)
@@ -74,9 +78,16 @@ onMounted(()=>{
       <el-aside :width="sideWidth"><Side :Data="Data.cardGroups" @click-card-group="clickCardGroup"></Side></el-aside>
       <el-container>
         <el-header><Bar :groupName="currentGroupName" @close="close" @min="min"></Bar></el-header>
-        <el-main style="overflow: hidden;padding: 0px;]">
+        <el-main style="overflow: hidden;padding: 0px;">
+          
+          <el-scrollbar height="620px"> 
+          <!-- <CardBox  v-for="(i,index) in Data" :style="`top:`+ i.top+`px;left:`+i.left+`px;z-index:` + (index == selected ? 2 : 1)+`;` " :key="index" v-on:click="hahah(i,index)"></CardBox> -->
+          <!-- <CardReview></CardReview> -->
           <GraphView :groupData="currentCards"></GraphView>
+          <!-- <Dataview></Dataview> -->
           <MainSpace :groupData="currentCards"></MainSpace>
+          <!-- <MyTimeLine></MyTimeLine> -->
+          </el-scrollbar>
         </el-main>
       </el-container>
     </el-container>

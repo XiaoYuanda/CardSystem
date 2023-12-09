@@ -2,15 +2,19 @@
 import { onMounted,ref } from 'vue';
 defineProps(['groupData'])
 let canvas=ref(null)
+let ctx = ref()
 
-const draw = function (ctx){
-  ctx.fillStyle = 'red'
-  ctx.fillRect(0,0,10,10)
+const initContext = function (){
+  ctx = canvas.value.getContext('2d')
+}
+
+const drawCircle = function (){
+  console.log(groupData)
 }
 
 onMounted(()=>{
-  const ctx = canvas.value.getContext('2d')
-  draw(ctx)
+  initContext()
+  drawCircle()
 })
 
 

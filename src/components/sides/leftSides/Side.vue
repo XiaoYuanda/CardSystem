@@ -6,11 +6,17 @@ defineProps(['Data'])
 <div class="show">
   <el-container>
   <el-header height="30px" style=" font-size: 12px;">
-    <div style="box-sizing: border-box;line-height: 30px;margin-left: 10px;">卡片组</div>
+      <div style="box-sizing: border-box;line-height: 30px;margin-left: 10px;">卡片组</div>
   </el-header>
   <el-main>
-    <div class="cardgroup" v-for="i in Data" @click="$emit('click-card-group', i)">
-      <div style="margin-left: 10px;font-size: 12px;box-sizing: border-box;line-height: 40px;">{{ i.name }}</div>
+    <div class="cardgroup" @click="$emit('click-add-group')">
+      <div style="margin-left: 10px;font-size: 12px;box-sizing: border-box;line-height: 40px;">添加组</div>
+    </div>
+    <div class="cardgroup" v-for="i in Data" @click="$emit('click-card-group', i)" style="padding: 10px;">
+      <el-badge :value="12" class="item">
+      <div style="font-size: 12px;box-sizing: border-box;">{{ i.name }}</div>
+      <p style="font-size: 10px;color: darkgrey; margin: 0px;">这里添加描述</p>
+    </el-badge>
     </div>
   </el-main>
 </el-container>

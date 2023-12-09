@@ -1,10 +1,12 @@
 <script setup>
 defineProps(['groupData'])
+
+
 </script>
 
 
 <template>
-  <el-scrollbar height="630px">
+  <!-- <el-scrollbar height="630px">  -->
     <div class="box-card" v-for="(card, index) in groupData" :key="index">
       <div class="card">
         <div v-html="card.question"></div>
@@ -12,7 +14,7 @@ defineProps(['groupData'])
       </div>
     </div>
     <el-empty v-if="!groupData" :image-size="100" description="什么也没有" />
-  </el-scrollbar>   
+  <!-- </el-scrollbar>    -->
 </template>
 
 
@@ -20,6 +22,7 @@ defineProps(['groupData'])
 
 .box-card{
   padding: 5px;
+  margin: 5px;
 }
 .card{
   border-radius: 6px;
