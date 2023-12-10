@@ -10,6 +10,9 @@ let ctx = ref()
 
 const initContext = function (){
   ctx = canvas.value.getContext('2d')
+  canvas.value.addEventListener('mousedown',()=>{
+    console.log('mousedown')
+  })
 }
 
 const drawCircle = function (x,y){
@@ -21,8 +24,10 @@ const drawCircle = function (x,y){
 
 watch(props,()=>{
   ctx.clearRect(0,0,canvas.value.width,canvas.value.height)
-  for(let i = 0; i < props.groupData.length;i++){
+  if(props.groupData){
+    for(let i = 0; i < props.groupData.length;i++){
     drawCircle(40*i + 20,20)
+  }
   }
 })
 
@@ -36,7 +41,7 @@ onMounted(()=>{
 
 
 <template>
-  <canvas ref="canvas" id="canvas" height="400" width="1600" style="background-color: azure;">
+  <canvas ref="canvas" id="canvas" height="400" width="760" style="background-color: azure;margin: 10px;">
   </canvas>
 </template>
 

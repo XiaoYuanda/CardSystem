@@ -9,10 +9,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite --host 192.168.31.76",
+    "vue:dev": "vite --host 192.168.31.76",
     "build": "vite build",
     "preview": "vite preview",
-    "electron:dev": "concurrently vite \"electron .\"",
+    "dev": "concurrently vite \"electron .\"",
     "electron:build": "vite build && electron-forge make",
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "axios": "^1.6.2",
+    "d3": "^7.8.5",
     "electron-squirrel-startup": "^1.0.0",
     "element-plus": "^2.4.3",
     "vditor": "^3.9.6",
