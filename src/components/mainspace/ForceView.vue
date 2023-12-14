@@ -2,7 +2,11 @@
 import { onMounted, ref } from 'vue';
 import * as d3 from 'd3' 
 const data = { 
-  'nodes':[{id:1, name: 'Yuanda'},{id:2, name:'chinese'}],
+  'nodes':[
+    {id:1, name:'Yuanda', color: '#f00'},
+    {id:2, name:'chinese', color: '#0f0'},
+    {id:3, name:'chinese', color: '#00f'}
+  ],
   'links': [{source: 1, target:2}]
 }
 
@@ -41,12 +45,14 @@ const init = function () {
     .attr("stroke-width", d => Math.sqrt(d.value));
   const node = svg.append("g")
     .attr("stroke", "#000") // 节点描边的颜色
-    .attr("stroke-width", 1) // 节点的描边宽度
+    .attr("stroke-width", 10) // 节点的描边宽度
     .selectAll("circle")
     .data(nodes)
     .join("circle")
-    .attr("r", 5) // 节点的大小，圆的半径
-    .attr("fill", d => color(d.group));
+    .attr("r", 50) // 节点的大小，圆的半径
+    .attr("fill", (d)=>{
+      return d.color
+    });
 
     node.append("name")
     .text(d => d.name);
@@ -56,8 +62,6 @@ const init = function () {
     .on("start", dragstarted)
     .on("drag", dragged)
     .on("end", dragended))
-    .on('hover',hovered);
-
   // Set the position attributes of links and nodes each time the simulation ticks.
   simulation.on("tick", () => {
     link
