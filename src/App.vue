@@ -11,6 +11,7 @@ import GraphView from './components/mainspace/GraphView.vue';
 import Dataview from './components/mainspace/Dataview.vue';
 import MyTimeLine from './components/mainspace/MyTimeLine.vue'
 import CardReview from './components/cards/CardReview.vue';
+import ForceView from './components/mainspace/ForceView.vue'
 import CardBox from './components/CardBox.vue'
 // const drawer = ref(true)
 const electron = window.require("electron");
@@ -83,9 +84,10 @@ onMounted(()=>{
           <el-scrollbar height="620px"> 
           <!-- <CardBox  v-for="(i,index) in Data" :style="`top:`+ i.top+`px;left:`+i.left+`px;z-index:` + (index == selected ? 2 : 1)+`;` " :key="index" v-on:click="hahah(i,index)"></CardBox> -->
           <!-- <CardReview></CardReview> -->
-          <GraphView :groupData="currentCards"></GraphView>
+          <ForceView></ForceView>
+          <!-- <GraphView :groupData="currentCards"></GraphView> -->
           <!-- <Dataview></Dataview> -->
-          <MainSpace :groupData="currentCards"></MainSpace>
+          <!-- <MainSpace :groupData="currentCards"></MainSpace> -->
           <!-- <MyTimeLine></MyTimeLine> -->
           </el-scrollbar>
         </el-main>
@@ -107,4 +109,3 @@ onMounted(()=>{
   height: 30px;
 }
 </style>
-
