@@ -92,7 +92,7 @@
   </el-row>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import {
   ArrowRight,
   CaretBottom,

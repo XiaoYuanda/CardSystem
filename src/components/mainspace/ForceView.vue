@@ -1,28 +1,29 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, watch } from 'vue';
 import * as d3 from 'd3' 
-const data = { 
-  'nodes':[
-    {id:1, name:'Yuanda', color: '#f00'},
-    {id:2, name:'chinese', color: '#0f0'},
-    {id:3, name:'chinese', color: '#00f'}
-  ],
-  'links': [{source: 1, target:2}]
-}
+const props = defineProps({
+  nodesData: Object
+})
 
 const init = function () {
+  console.log(props.nodesData)
+  let container = document.getElementById('container')
+  container.innerHTML = ''
   const width = 900;
   const height = 710;
-  const color = d3.scaleOrdinal(d3.schemeCategory10);
+  // const color = d3.scaleOrdinal(d3.schemeCategory10);
 
-  const links = data.links.map(d => ({ ...d }));
-  const nodes = data.nodes.map(d => ({ ...d }));
+  // const links = props.nodesData.links.map(d => ({ ...d }));
+  const links = [].map(d => ({ ...d }));
+  const nodes = props.nodesData.map(d => ({ ...d }));
 
   const simulation = d3.forceSimulation(nodes)
-    .force("charge", d3.forceManyBody().strength(-10).theta(0.9).distanceMin(20).distanceMax(100)) // strength 指定强度
-    .force("link", d3.forceLink(links).id(d => d.id).distance(200)) // 这个id是连接的关键
+    .force("charge", d3.forceManyBody().strength(-20)) // strength 指定强度
+    .force("link", d3.forceLink(links).id(d => d.id).distance(0).strength(1.5)) // 这个id是连接的关键
     .force("x", d3.forceX())
-    .force("y", d3.forceY());
+    .force("y", d3.forceY())
+    .force("charge", d3.forceCollide(20))
+    .alpha(1)
 
     // Create the SVG container.
   const svg = d3.create("svg")
@@ -44,14 +45,15 @@ const init = function () {
     .join("line")
     .attr("stroke-width", d => Math.sqrt(d.value));
   const node = svg.append("g")
-    .attr("stroke", "#000") // 节点描边的颜色
-    .attr("stroke-width", 10) // 节点的描边宽度
+    .attr("stroke", "#aaa") // 节点描边的颜色
+    .attr("stroke-width", 1) // 节点的描边宽度
     .selectAll("circle")
     .data(nodes)
     .join("circle")
-    .attr("r", 50) // 节点的大小，圆的半径
+    .attr("r", 10) // 节点的大小，圆的半径
     .attr("fill", (d)=>{
-      return d.color
+      // return d.color
+      return '#f00'
     });
 
     node.append("name")
@@ -63,13 +65,20 @@ const init = function () {
     .on("drag", dragged)
     .on("end", dragended))
   // Set the position attributes of links and nodes each time the simulation ticks.
+
+  node.on('mouseover', function () {
+    // d3.select(this).transition().duration(50).attr('fill', '#000')
+  })
+
+  node.on('mouseleave' ,function(){
+    // d3.select(this).transition().duration(50).attr('fill', "#eee")
+  })
   simulation.on("tick", () => {
     link
       .attr("x1", d => d.source.x)
       .attr("y1", d => d.source.y)
       .attr("x2", d => d.target.x)
       .attr("y2", d => d.target.y);
-
     node
       .attr("cx", d => d.x)
       .attr("cy", d => d.y);
@@ -103,12 +112,15 @@ const init = function () {
   // really matter since the target alpha is zero and the simulation will
   // stop naturally, but it’s a good practice.)
   // invalidation.then(() => simulation.stop());
-  const container = document.getElementById('container')
+  container = document.getElementById('container')
   container.append(svg.node());
 }
 
-onMounted(()=>{
+watch(props,()=>{
   init()
+})
+
+onMounted(()=>{
 })
 
 </script>

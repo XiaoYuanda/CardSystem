@@ -1,7 +1,5 @@
 <script setup>
 defineProps(['groupData'])
-
-
 </script>
 
 

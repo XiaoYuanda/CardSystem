@@ -1,18 +1,18 @@
 <script setup>
-import { onMounted, ref } from 'vue';
-import Side from './components/sides/leftSides/Side.vue'
-import Bar from './components/bars/Bar.vue';
-import ShowLeft from './components/sides/leftSides/ShowLeft.vue';
-import MainSpace from './components/mainspace/MainSpace.vue';
-import axios from 'axios'
+import { onMounted, ref, h } from 'vue';
 import { ElNotification } from 'element-plus'
-import { h } from 'vue'
-import GraphView from './components/mainspace/GraphView.vue';
+
+import Side from './components/sides/leftSides/Side.vue'
+import Bar from './components/bars/Bar.vue';  
+import ShowLeft from './components/sides/leftSides/ShowLeft.vue';
+// import MainSpace from './components/mainspace/MainSpace.vue';
+import axios from 'axios'
+
+// import GraphView from './components/mainspace/GraphView.vue';
 import Dataview from './components/mainspace/Dataview.vue';
-import MyTimeLine from './components/mainspace/MyTimeLine.vue'
-import CardReview from './components/cards/CardReview.vue';
+// import CardReview from './components/cards/CardReview.vue';
 import ForceView from './components/mainspace/ForceView.vue'
-import CardBox from './components/CardBox.vue'
+// import CardBox from './components/CardBox.vue'
 // const drawer = ref(true)
 const electron = window.require("electron");
 const devTools = ref(false)
@@ -84,7 +84,7 @@ onMounted(()=>{
           <el-scrollbar height="620px"> 
           <!-- <CardBox  v-for="(i,index) in Data" :style="`top:`+ i.top+`px;left:`+i.left+`px;z-index:` + (index == selected ? 2 : 1)+`;` " :key="index" v-on:click="hahah(i,index)"></CardBox> -->
           <!-- <CardReview></CardReview> -->
-          <ForceView></ForceView>
+          <ForceView :nodesData="currentCards"></ForceView>
           <!-- <GraphView :groupData="currentCards"></GraphView> -->
           <!-- <Dataview></Dataview> -->
           <!-- <MainSpace :groupData="currentCards"></MainSpace> -->
