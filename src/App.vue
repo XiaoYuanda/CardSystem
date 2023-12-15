@@ -9,7 +9,7 @@ import ShowLeft from './components/sides/leftSides/ShowLeft.vue';
 import axios from 'axios'
 
 // import GraphView from './components/mainspace/GraphView.vue';
-import Dataview from './components/mainspace/Dataview.vue';
+// import Dataview from './components/mainspace/Dataview.vue';
 // import CardReview from './components/cards/CardReview.vue';
 import ForceView from './components/mainspace/ForceView.vue'
 // import CardBox from './components/CardBox.vue'

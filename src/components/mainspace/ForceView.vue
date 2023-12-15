@@ -4,9 +4,25 @@ import * as d3 from 'd3'
 const props = defineProps({
   nodesData: Object
 })
+const makeData = function(){
+  // 1. 判断记忆是否过期，过期就设置为红色，没有过期就设置为绿色
+  const moment = require('moment');
+  const currentTime = new Date(moment().format('YYYY-MM-DD HH:mm:ss'))
+  console.log(currentTime)
 
+  for(let i = 0; i < props.nodesData.length; i++){
+    let data =  new Date(props.nodesData[i].nextreviewtime)
+    if(data > currentTime){
+      props.nodesData[i].color = '#0A0'
+      console.log('green')
+    }else {
+      props.nodesData[i].color = '#F00'
+      console.log('red')
+    }
+  }
+}
 const init = function () {
-  console.log(props.nodesData)
+  makeData() // 改造数据
   let container = document.getElementById('container')
   container.innerHTML = ''
   const width = 900;
@@ -52,8 +68,8 @@ const init = function () {
     .join("circle")
     .attr("r", 10) // 节点的大小，圆的半径
     .attr("fill", (d)=>{
-      // return d.color
-      return '#f00'
+      return d.color
+      // return '#f00'
     });
 
     node.append("name")
